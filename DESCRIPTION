@@ -1,0 +1,14 @@
+Package: MidTerm
+Title: Computes bayesian model averaging statistics
+Version: 0.1
+Authors: "Michelle Torres <smtorres@wustl.edu>"
+Description: MidTerm computes multiple regression coefficients and R-squared
+    statistics based on a combination of covariates. It also estimates
+    posterior model odds, posterior expected values and posterior probabilities
+    from all the possible regressions computed.
+Depends:
+    plyr,
+    combinat,
+    R (>= 3.0.2)
+License: WUSTL
+LazyData: true
