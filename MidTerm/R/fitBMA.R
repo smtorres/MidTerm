@@ -68,13 +68,13 @@
   #Apply function "covs.store" to the matrix "x" based on the combinations in "vars" 
   if(parallel==TRUE){
   for (i in 1:length(vars)){
-    covs.coeffs[[i]]<-alply(vars[[i]], .margins=2, .fun=covs.store, ivs=x, dv=y, .parallel=TRUE)
+    covs.coeffs[[i]]<-alply(vars[[i]], .margins=2, .fun=covs.store, ivs=cov, dv=out, .parallel=TRUE)
   }
   }
   
   if(parallel==FALSE){
     for (i in 1:length(vars)){
-      covs.coeffs[[i]]<-alply(vars[[i]], .margins=2, .fun=covs.store, ivs=x, dv=y)
+      covs.coeffs[[i]]<-alply(vars[[i]], .margins=2, .fun=covs.store, ivs=cov, dv=out)
     }
   }
   #Collapse elements of a list (Level 2)
@@ -102,7 +102,7 @@
   #Empty list: r.reg --> Vector with R-squared values for each regression
   r.reg<-list()
   for (i in 1:length(vars)){
-    r.reg[[i]]<-apply(vars[[i]], 2, FUN=r.store, ivs=x, dv=y)
+    r.reg[[i]]<-apply(vars[[i]], 2, FUN=r.store, ivs=cov, dv=out)
   }
   r.reg<-as.matrix(unlist(r.reg))
   colnames(r.reg)<-"R-squared"
