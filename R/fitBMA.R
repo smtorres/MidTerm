@@ -21,7 +21,7 @@
 #' out.vec<-cov.mat[,2]*3 + sample(1:5,5,replace=TRUE)
 #' fitBMA(x=cov.mat, y=out.vec, g=3)
 #' 
-#' @seealso summBMA plotBMA
+#' @seealso \code{\link{summBMA}} \code{\link{plotBMA}}
 #' 
 #' @export
   fitBMA<-function(x,y,g=NULL, parallel=FALSE){
@@ -66,8 +66,16 @@
     return(output)
   }
   #Apply function "covs.store" to the matrix "x" based on the combinations in "vars" 
+  if(parallel==TRUE){
   for (i in 1:length(vars)){
-    covs.coeffs[[i]]<-apply(vars[[i]], 2, FUN=covs.store, ivs=x, dv=y)
+    covs.coeffs[[i]]<-alply(vars[[i]], .margins=2, .fun=covs.store, ivs=x, dv=y, .parallel=TRUE)
+  }
+  }
+  
+  if(parallel==FALSE){
+    for (i in 1:length(vars)){
+      covs.coeffs[[i]]<-alply(vars[[i]], .margins=2, .fun=covs.store, ivs=x, dv=y)
+    }
   }
   #Collapse elements of a list (Level 2)
   reg.coeffs<-lapply(covs.coeffs, rbind.fill)
