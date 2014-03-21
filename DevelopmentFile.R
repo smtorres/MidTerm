@@ -1,0 +1,7 @@
+setwd("/Users/michelletorres/Desktop/MidTerm")
+current.code <- as.package("MidTerm")
+load_all(current.code)
+document(current.code)
+check(current.code)
+install(pkg=current.code,local=TRUE)
+build(current.code,path=getwd())
