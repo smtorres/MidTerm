@@ -38,6 +38,6 @@ fitBMA(x=cov.mat, y=out.vec, g=3)
 Michelle Torres
 }
 \seealso{
-summBMA plotBMA
+\code{\link{summBMA}} \code{\link{plotBMA}}
 }
 
